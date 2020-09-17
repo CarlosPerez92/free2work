@@ -1,9 +1,15 @@
 const app = require('./app')
 require('./connection');
+require("dotenv").config({path:'variables.env'})
 
+//leer variables de sesioon
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 3000;
 async function init() {
-    await app.listen(3000);
-    console.log('Connected correctly to server')
+    await app.listen(port,host,()=> {
+        console.log('Connected correctly to server')
+    });
+    
 }
 
 init();
